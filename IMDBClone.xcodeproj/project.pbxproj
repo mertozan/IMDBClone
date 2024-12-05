@@ -73,6 +73,7 @@
 				FB3428A12CFE573A00A75173 /* Utilities */,
 				FB3428A22CFE574300A75173 /* Assets */,
 				FB34288B2CFE570400A75173 /* IMDBClone.xcdatamodeld */,
+				FB34288C2CFE570400A75173 /* Info.plist */,
 			);
 			path = IMDBClone;
 			sourceTree = "<group>";
@@ -117,7 +118,6 @@
 			children = (
 				FB3428892CFE570400A75173 /* AppDelegate.swift */,
 				FB3428912CFE570400A75173 /* SceneDelegate.swift */,
-				FB34288C2CFE570400A75173 /* Info.plist */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
