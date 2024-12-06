@@ -67,7 +67,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="cXU-tL-LpG">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="cXU-tL-LpG">
                                 <rect key="frame" x="0.0" y="59" width="393" height="710"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
@@ -79,10 +79,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="v16-qg-TBD">
-                                                    <rect key="frame" x="8" y="8" width="100" height="100"/>
+                                                    <rect key="frame" x="8" y="8" width="100" height="161"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="150" id="3dl-aV-cai"/>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="NX6-IN-bGR"/>
                                                         <constraint firstAttribute="width" constant="100" id="WFq-7Q-fJb"/>
                                                     </constraints>
                                                 </imageView>
@@ -106,7 +105,7 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="v16-qg-TBD" secondAttribute="bottom" constant="61" id="Shp-aT-k8g"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="v16-qg-TBD" secondAttribute="bottom" id="Shp-aT-k8g"/>
                                                 <constraint firstItem="f4h-zh-AWU" firstAttribute="leading" secondItem="tD7-ra-IM4" secondAttribute="leading" id="Sv9-LU-Vlc"/>
                                                 <constraint firstItem="v16-qg-TBD" firstAttribute="leading" secondItem="zHI-zR-UeV" secondAttribute="leadingMargin" constant="-12" id="b69-fQ-uo9"/>
                                                 <constraint firstItem="v16-qg-TBD" firstAttribute="top" secondItem="f4h-zh-AWU" secondAttribute="top" id="cRH-FS-IiS"/>
