@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class MovieTableViewCell: UITableViewCell {
 
@@ -28,6 +29,19 @@ class MovieTableViewCell: UITableViewCell {
     func configure(with viewModel: MovieCellViewModel) {
         movieTitleLabel.text = viewModel.title
         movieDetailsLabel.text = viewModel.details // Ek bilgiyi buraya atıyoruz.
+        
+        if let url = viewModel.posterURL {
+            movieImageView.kf.setImage(
+                with: url,
+                placeholder: UIImage(named: "placeholder"),
+                options: [
+                .transition(.fade(0.3)),
+                .cacheOriginalImage
+            ]
+            )
+        } else {
+            movieImageView.image = UIImage(named: "placeholder")
+        }
     }
     
     
