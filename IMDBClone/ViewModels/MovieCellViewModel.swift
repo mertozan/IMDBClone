@@ -16,6 +16,11 @@ struct MovieCellViewModel {
     init(movie: Movie) {
         self.title = movie.title
         self.details = "\(movie.releaseDate) | Rating: \(movie.voteAverage)" // Detay birleştirme
-        self.posterURL = URL(string: "https://image.tmdb.org/t/p/w500\(movie.posterPath)")
+        // Poster URL'si oluşturma
+        if let posterPath = movie.posterPath {
+            self.posterURL = URL(string: "https://image.tmdb.org/t/p/w500\(posterPath)")
+        } else {
+            self.posterURL = nil
+        }
     }
 }

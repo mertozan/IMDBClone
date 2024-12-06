@@ -19,12 +19,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        let window = UIWindow(windowScene: windowScene)
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let initialViewController = storyboard.instantiateViewController(withIdentifier: "MovieListViewController")
-        window.rootViewController = initialViewController
-        self.window = window
-        window.makeKeyAndVisible()
+        // Tab Bar Controller'ı oluştur
+        let tabBarController = UITabBarController()
+        
+        // ViewController'ları oluştur ve Tab Bar'a ekle
+        let moviesVC = UINavigationController(rootViewController: UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieListViewController"))
+        moviesVC.tabBarItem = UITabBarItem(title: "Movies", image: UIImage(systemName: "film"), tag: 0)
+        
+        let searchVC = UINavigationController(rootViewController: SearchViewController())
+        searchVC.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), tag: 1)
+        
+        let profileVC = UINavigationController(rootViewController: FavoritesViewController())
+        profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person"), tag: 2)
+        
+        // Tab Bar Controller'a ViewController'ları ekle
+        tabBarController.viewControllers = [moviesVC, searchVC, profileVC]
+        
+        // Window'u ayarla ve Tab Bar Controller'ı göster
+        window = UIWindow(windowScene: windowScene)
+        window?.rootViewController = tabBarController
+        window?.makeKeyAndVisible()
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

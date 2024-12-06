@@ -17,7 +17,17 @@ class MovieListViewController: UIViewController {
         setupTableView()
         setupBindings()
         viewModel.fetchMovies()
-        
+        print("MovieListViewController Yüklendi!")
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowMovieDetails" {
+            guard let detailVC = segue.destination as? MovieDetailsViewController,
+                  let indexPath = tableView.indexPathForSelectedRow else { return }
+            
+            let selectedMovie = viewModel.movies[indexPath.row]
+            detailVC.viewModel = MovieDetailViewModel(movie: selectedMovie)
+        }
     }
     
     private func setupTableView() {
@@ -56,10 +66,6 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
         let cellViewModel = viewModel.movieCellViewModels[indexPath.row]
         cell.configure(with: cellViewModel)
         return cell
-    }
-    
-    
-    
-    
+    }    
 }
 
