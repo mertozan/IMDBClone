@@ -17,7 +17,7 @@ class MovieListViewController: UIViewController {
         setupTableView()
         setupBindings()
         viewModel.fetchMovies()
-        print("MovieListViewController Yüklendi!")
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

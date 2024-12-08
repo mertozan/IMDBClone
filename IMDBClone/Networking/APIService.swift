@@ -63,8 +63,37 @@ class APIService {
             return
         }
         
-        performRequest(url: url, completion: completion)
+        // Beklenen türü `MovieResponse` olarak belirtin
+        performRequest(url: url) { (result: Result<MovieResponse, Error>) in
+            switch result {
+            case .success(let movieResponse):
+                completion(.success(movieResponse.results)) // `results` içindeki filmleri döndür
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
+    
+    func searchMovies(query: String, completion: @escaping (Result<[Movie], Error>) -> Void) {
+        let urlString = "\(baseURL)/search/movie?api_key=\(apiKey)&language=en-US&query=\(query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")&page=1&include_adult=false"
+        
+        guard let url = URL(string: urlString) else {
+            completion(.failure(NSError(domain: "Invalid URL", code: -1, userInfo: nil)))
+            return
+        }
+        
+        performRequest(url: url) { (result: Result<MovieResponse, Error>) in
+            switch result {
+            case .success(let movieResponse):
+                completion(.success(movieResponse.results))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    
+    
     
     /// Genel bir API isteği gerçekleştiren yardımcı fonksiyon
     private func performRequest<T: Decodable>(url: URL, completion: @escaping (Result<T, Error>) -> Void) {
@@ -79,12 +108,10 @@ class APIService {
                 return
             }
             
-            // JSON Yanıtını Kontrol Et
             if let jsonString = String(data: data, encoding: .utf8) {
                 print("API Response JSON: \(jsonString)")
             }
             
-            // JSON Decode
             do {
                 let decodedResponse = try JSONDecoder().decode(T.self, from: data)
                 completion(.success(decodedResponse))

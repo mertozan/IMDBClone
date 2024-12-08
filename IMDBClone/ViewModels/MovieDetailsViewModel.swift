@@ -9,7 +9,12 @@ import Foundation
 
 class MovieDetailViewModel {
     private let movie: Movie
-    private(set) var recommendations: [Movie] = [] // Önerilen filmler
+    var recommendations: [Movie] = [] // Önerilen filmler
+    
+    // Önerileri dışarıdan eklemek için bir yöntem
+    func setRecommendations(_ movies: [Movie]) {
+        self.recommendations = movies
+    }
     
     // Init ile bir Movie nesnesi alıyoruz
     init(movie: Movie) {
