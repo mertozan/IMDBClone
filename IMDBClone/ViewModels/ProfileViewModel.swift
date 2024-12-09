@@ -32,14 +32,6 @@ class ProfileViewModel {
             // Örnek veriler
             self.userName = "Mert ÖZAN"
             self.avatarURL = "https://example.com/avatar.jpg"
-            self.watchlist = [
-                Movie(id: 1, title: "Inception", overview: "A mind-bending thriller", posterPath: nil, releaseDate: "2010-07-16", voteAverage: 8.8, genreIDs: [28, 878]),
-                Movie(id: 2, title: "The Matrix", overview: "A hacker discovers reality is a simulation", posterPath: nil, releaseDate: "1999-03-31", voteAverage: 8.7, genreIDs: [28, 878])
-            ]
-            self.customLists = [
-                MovieList(id: UUID(), name: "Favorites", movies: self.watchlist),
-                MovieList(id: UUID(), name: "To Watch", movies: [])
-            ]
             
             // Güncellemeyi tetikle
             DispatchQueue.main.async {
@@ -54,18 +46,6 @@ class ProfileViewModel {
         // Dummy Kullanıcı Bilgileri
         userName = "Mert ÖZAN"
         avatarURL = "https://i.pravatar.cc/150" // Örnek avatar resmi
-        
-        // Dummy Watchlist Verileri
-        watchlist = [
-            Movie(id: 1, title: "Interstellar", overview: "A journey beyond stars.", posterPath: nil, releaseDate: "2014-11-07", voteAverage: 8.6, genreIDs: [12, 878]),
-            Movie(id: 2, title: "Inception", overview: "Dream within a dream.", posterPath: nil, releaseDate: "2010-07-16", voteAverage: 8.8, genreIDs: [28, 878])
-        ]
-        
-        // Dummy Custom List Verileri
-        customLists = [
-            MovieList(id: UUID(), name: "Sci-Fi Favorites", movies: []),
-            MovieList(id: UUID(), name: "Oscar Winners", movies: [])
-        ]
         
         // Callback'leri çağır
         onUserUpdated?()

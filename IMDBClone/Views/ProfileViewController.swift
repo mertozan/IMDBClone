@@ -39,58 +39,58 @@ class ProfileViewController: UIViewController {
     
     
     private func setupCollectionView() {
-            // Delegate ve DataSource Ayarı
-            watchListCollectionView.delegate = self
-            watchListCollectionView.dataSource = self
-            
-            // Hücre Kayıt
-            watchListCollectionView.register(UINib(nibName: "WatchListCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "WatchListCell")
-            
-            // Layout Özellikleri
-            if let layout = watchListCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-                layout.minimumLineSpacing = 8
-                layout.minimumInteritemSpacing = 8
-            }
+        // Delegate ve DataSource Ayarı
+        watchListCollectionView.delegate = self
+        watchListCollectionView.dataSource = self
+        
+        // Hücre Kayıt
+        watchListCollectionView.register(UINib(nibName: "WatchListCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "WatchListCell")
+        
+        // Layout Özellikleri
+        if let layout = watchListCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.minimumLineSpacing = 8
+            layout.minimumInteritemSpacing = 8
         }
+    }
     
     private func setupTableView() {
-            // Delegate ve DataSource Ayarı
-            customListsTableView.delegate = self
-            customListsTableView.dataSource = self
-            
-            // Hücre Kayıt
-            customListsTableView.register(UINib(nibName: "CustomListTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomListCell")
-            
-            // TableView Özelleştirme
-            customListsTableView.backgroundColor = UIColor(named: "BackgroundColor")
-            customListsTableView.separatorStyle = .none
-        }
+        // Delegate ve DataSource Ayarı
+        customListsTableView.delegate = self
+        customListsTableView.dataSource = self
+        
+        // Hücre Kayıt
+        customListsTableView.register(UINib(nibName: "CustomListTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomListCell")
+        
+        // TableView Özelleştirme
+        customListsTableView.backgroundColor = UIColor(named: "BackgroundColor")
+        customListsTableView.separatorStyle = .none
+    }
     
     
-        private func setupBindings() {
-            viewModel.onUserUpdated = { [weak self] in
-                DispatchQueue.main.async {
-                    guard let self = self else { return }
-                    
-                    // Kullanıcı Adı ve Avatar Güncellemesi
-                    self.userNameLabel.text = self.viewModel.userName
-                    if let url = URL(string: self.viewModel.avatarURL ?? "") {
-                        self.avatarImageView.kf.setImage(with: url) // Kingfisher ile görsel yükleniyor
-                    } else {
-                        self.avatarImageView.image = UIImage(named: "avatar_placeholder")
-                    }
-                    
-                    // Genel Bilgi Güncellemesi
-                    self.totalListsLabel.text = "Total Lists: \(self.viewModel.totalLists)"
-                    self.watchListCollectionView.reloadData()
-                    self.customListsTableView.reloadData()
+    private func setupBindings() {
+        viewModel.onUserUpdated = { [weak self] in
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                
+                // Kullanıcı Adı ve Avatar Güncellemesi
+                self.userNameLabel.text = self.viewModel.userName
+                if let url = URL(string: self.viewModel.avatarURL ?? "") {
+                    self.avatarImageView.kf.setImage(with: url) // Kingfisher ile görsel yükleniyor
+                } else {
+                    self.avatarImageView.image = UIImage(named: "avatar_placeholder")
                 }
+                
+                // Genel Bilgi Güncellemesi
+                self.totalListsLabel.text = "Total Lists: \(self.viewModel.totalLists)"
+                self.watchListCollectionView.reloadData()
+                self.customListsTableView.reloadData()
             }
         }
-
-        private func loadData() {
-            viewModel.fetchProfileData()
-        }
+    }
+    
+    private func loadData() {
+        viewModel.fetchProfileData()
+    }
 }
 
 
@@ -124,8 +124,10 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CustomListCell", for: indexPath) as? CustomListTableViewCell else {
             return UITableViewCell()
         }
-        let customList = viewModel.customLists[indexPath.row]
-        cell.configure(with: customList)
+        let list = viewModel.customLists[indexPath.row]
+        let itemCount = list.movies.count
+        cell.configure(with: list.name, itemCount: itemCount)
+        
         return cell
     }
     
