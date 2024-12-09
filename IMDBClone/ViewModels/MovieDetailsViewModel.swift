@@ -44,11 +44,11 @@ class MovieDetailViewModel {
     }
     
     var releaseDate: String {
-        return "Release Date: \(movie.releaseDate)"
+        return movie.releaseDate
     }
     
     var rating: String {
-        return "Rating: \(movie.voteAverage)"
+        return "\(movie.voteAverage)"
     }
     
     var genres: String {

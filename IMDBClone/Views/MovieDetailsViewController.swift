@@ -18,9 +18,19 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet var ratingLabel: UILabel!
     @IBOutlet var genresLabel: UILabel!
     @IBOutlet var recommendationCollectionView: UICollectionView!
+    @IBOutlet var durationLabel: UILabel!
+    @IBOutlet var trailerView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //         Sağ üst köşeye 3 nokta ekleme
+        //        navigationItem.rightBarButtonItem = UIBarButtonItem (
+        //            image: UIImage(systemName: "ellipsis.circle"),
+        //            style: .plain,
+        //            target: self,
+        //            action: #selector(didTapOptions)
+        //        )
         
         recommendationCollectionView.delegate = self
         recommendationCollectionView.dataSource = self
@@ -32,7 +42,7 @@ class MovieDetailsViewController: UIViewController {
             }
         }
         
-        
+        setupUI()
         
         guard let viewModel = viewModel else {
             fatalError("MovieDetailViewModel is not set")
@@ -50,15 +60,45 @@ class MovieDetailsViewController: UIViewController {
         
     }
     
-    private func addDummyData() {
+    private func setupUI() {
+        // Label Özellikleri
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        titleLabel.text = "Movie Title" // Gelecek veriye göre değiştirilecek
         
-        viewModel.recommendations = [
-            Movie(id: 1, title: "Test Movie 1", overview: "Test Overview 1", posterPath: nil, releaseDate: "2023-11-10", voteAverage: 8.0, genreIDs: [28, 12]),
-            Movie(id: 2, title: "Test Movie 2", overview: "Test Overview 2", posterPath: nil, releaseDate: "2023-12-15", voteAverage: 7.5, genreIDs: [35, 18]),
-            Movie(id: 3, title: "Test Movie 3", overview: "Test Overview 3", posterPath: nil, releaseDate: "2023-10-05", voteAverage: 9.0, genreIDs: [16, 14])
-        ]
-        recommendationCollectionView.reloadData()
+        releaseDateLabel.font = UIFont.systemFont(ofSize: 14)
+        releaseDateLabel.textColor = .gray
+        releaseDateLabel.text = "2024"
+        
+        durationLabel.font = UIFont.systemFont(ofSize: 14)
+        durationLabel.textColor = .gray
+        durationLabel.text = "120 mins"
+        
+        ratingLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        ratingLabel.textColor = .systemYellow
+        ratingLabel.text = "8.5"
+        
+        // Poster ImageView Özellikleri
+        posterImageView.layer.cornerRadius = 10
+        posterImageView.clipsToBounds = true
+        posterImageView.image = UIImage(named: "placeholder") // Örnek görsel
+        
+        // Overview ve Genres Label
+        overviewLabel.font = UIFont.systemFont(ofSize: 14)
+        overviewLabel.numberOfLines = 0
+        overviewLabel.text = "This is the movie overview. It provides a brief description about the movie."
+        
+        genresLabel.font = UIFont.systemFont(ofSize: 14)
+        genresLabel.textColor = .gray
+        genresLabel.text = "Genres: Action, Adventure"
+        
+        // Trailer View Özellikleri
+        trailerView.backgroundColor = .lightGray
+        trailerView.layer.cornerRadius = 8
+        
+        // Genel Arka Plan
+        view.backgroundColor = .white
     }
+    
 }
 
 
