@@ -16,10 +16,12 @@ class RecommendationCollectionViewCell: UICollectionViewCell {
         
         // Hücreyi özelleştir
         contentView.applyRoundedCornersAndShadow()
-        posterImageView.layer.cornerRadius = 10
-        posterImageView.layer.masksToBounds = true
+        
+        // Poster görselinin köşelerini yuvarla
+        posterImageView.layer.cornerRadius = 12
+        posterImageView.clipsToBounds = true
+        
     }
-    
     
     func configure(with movie: Movie) {
         titleLabel.text = movie.title

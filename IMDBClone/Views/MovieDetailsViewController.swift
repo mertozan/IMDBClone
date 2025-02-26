@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import YouTubeiOSPlayerHelper
 
 class MovieDetailsViewController: UIViewController {
     var movie: Movie?
@@ -19,7 +20,13 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet var genresLabel: UILabel!
     @IBOutlet var recommendationCollectionView: UICollectionView!
     @IBOutlet var durationLabel: UILabel!
-    @IBOutlet var trailerView: UIView!
+    @IBOutlet var trailerView: UIView! {
+        didSet {
+            setupYouTubePlayer()
+        }
+    }
+    
+    private var youtubePlayer: YTPlayerView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,10 +42,24 @@ class MovieDetailsViewController: UIViewController {
         recommendationCollectionView.delegate = self
         recommendationCollectionView.dataSource = self
         
+        viewModel.fetchMovieDetails { [weak self] in
+        DispatchQueue.main.async {
+                self?.durationLabel.text = self?.viewModel.formattedDuration
+            }
+        }
+
         viewModel.fetchRecommendations { [weak self] in
             DispatchQueue.main.async {
                 //                print("Yüklenen Filmler: \(self?.viewModel.recommendations)")
                 self?.recommendationCollectionView.reloadData()
+            }
+        }
+        
+        viewModel.fetchTrailer { [weak self] in
+            DispatchQueue.main.async {
+                if let videoKey = self?.viewModel.trailerKey {
+                    self?.youtubePlayer?.load(withVideoId: videoKey)
+                }
             }
         }
         
@@ -64,6 +85,9 @@ class MovieDetailsViewController: UIViewController {
     private func setupUI() {
         // Label Özellikleri
         titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        titleLabel.numberOfLines = 0
+        titleLabel.lineBreakMode = .byWordWrapping
+        titleLabel.preferredMaxLayoutWidth = 160
         titleLabel.text = "Movie Title" // Gelecek veriye göre değiştirilecek
         
         releaseDateLabel.font = UIFont.systemFont(ofSize: 14)
@@ -79,13 +103,14 @@ class MovieDetailsViewController: UIViewController {
         ratingLabel.text = "8.5"
         
         // Poster ImageView Özellikleri
-        posterImageView.layer.cornerRadius = 10
+        posterImageView.layer.cornerRadius = 12
         posterImageView.clipsToBounds = true
+        posterImageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
         posterImageView.image = UIImage(named: "placeholder") // Örnek görsel
         
         // Overview ve Genres Label
-        overviewLabel.font = UIFont.systemFont(ofSize: 14)
-        overviewLabel.numberOfLines = 0
+        overviewLabel.font = UIFont.systemFont(ofSize: 18)
+        overviewLabel.numberOfLines = 9
         overviewLabel.text = "This is the movie overview. It provides a brief description about the movie."
         
         genresLabel.font = UIFont.systemFont(ofSize: 14)
@@ -93,13 +118,34 @@ class MovieDetailsViewController: UIViewController {
         genresLabel.text = "Genres: Action, Adventure"
         
         // Trailer View Özellikleri
-        trailerView.backgroundColor = .lightGray
-        trailerView.layer.cornerRadius = 8
+        trailerView.backgroundColor = .black
+        trailerView.layer.cornerRadius = 12
+        trailerView.clipsToBounds = true
+        trailerView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+
+        // Youtube Player'ın corner radius
+        youtubePlayer?.layer.cornerRadius = 12
+        youtubePlayer?.clipsToBounds = true
+        youtubePlayer?.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
         
         // Genel Arka Plan
         view.backgroundColor = .white
     }
     
+    private func setupYouTubePlayer() {
+        youtubePlayer = YTPlayerView()
+        guard let youtubePlayer = youtubePlayer else { return }
+        
+        youtubePlayer.translatesAutoresizingMaskIntoConstraints = false
+        trailerView.addSubview(youtubePlayer)
+        
+        NSLayoutConstraint.activate([
+            youtubePlayer.topAnchor.constraint(equalTo: trailerView.topAnchor),
+            youtubePlayer.leadingAnchor.constraint(equalTo: trailerView.leadingAnchor),
+            youtubePlayer.trailingAnchor.constraint(equalTo: trailerView.trailingAnchor),
+            youtubePlayer.bottomAnchor.constraint(equalTo: trailerView.bottomAnchor)
+        ])
+    }
 }
 
 // CollectionView Layout ve Boyutlandırma

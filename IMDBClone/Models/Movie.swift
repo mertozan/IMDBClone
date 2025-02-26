@@ -14,7 +14,7 @@ struct Movie : Codable {
     let posterPath: String?  // Posterin URL yolu
     let releaseDate: String // Filmin çıkış tarihi
     let voteAverage: Double // Filmin puanı
-    let genreIDs: [Int]
+    let genreIDs: [Int]?
     var runtime: Int?
     
     // API'den gelen JSON anahtarları farklı olabilir, bu yüzden "CodingKeys" kullanıyoruz.

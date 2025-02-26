@@ -35,6 +35,7 @@
 		FBA3BE0A2D0260D7007C6DB3 /* MovieCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA3BE092D0260D7007C6DB3 /* MovieCellViewModel.swift */; };
 		FBADC4C42D035D9900E9C553 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBADC4C22D035D9900E9C553 /* SearchViewController.swift */; };
 		FBADC4C52D035D9900E9C553 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBADC4C32D035D9900E9C553 /* SearchViewController.xib */; };
+		FBB491E02D6F0106009B2CA9 /* YouTubeiOSPlayerHelper in Frameworks */ = {isa = PBXBuildFile; productRef = FBB491DF2D6F0106009B2CA9 /* YouTubeiOSPlayerHelper */; };
 		FBC4B9392D03766700036B94 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC4B9382D03766700036B94 /* MovieDetailsViewController.swift */; };
 		FBC4B93B2D03827000036B94 /* MovieDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC4B93A2D03826800036B94 /* MovieDetailsViewModel.swift */; };
 		FBC4B9432D038F4000036B94 /* RecommendationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC4B9422D038F4000036B94 /* RecommendationCollectionViewCell.swift */; };
@@ -81,6 +82,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB53EEC12D0325E4008FEA0D /* Kingfisher in Frameworks */,
+				FBB491E02D6F0106009B2CA9 /* YouTubeiOSPlayerHelper in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,6 +217,7 @@
 			name = IMDBClone;
 			packageProductDependencies = (
 				FB53EEC02D0325E4008FEA0D /* Kingfisher */,
+				FBB491DF2D6F0106009B2CA9 /* YouTubeiOSPlayerHelper */,
 			);
 			productName = IMDBClone;
 			productReference = FB34286E2CFE512E00A75173 /* IMDBClone.app */;
@@ -246,6 +249,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				FB53EEBF2D0325E4008FEA0D /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				FBB491DE2D6F0106009B2CA9 /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FB34286F2CFE512E00A75173 /* Products */;
@@ -534,6 +538,14 @@
 				minimumVersion = 8.1.1;
 			};
 		};
+		FBB491DE2D6F0106009B2CA9 /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/youtube/youtube-ios-player-helper.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.4;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -541,6 +553,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FB53EEBF2D0325E4008FEA0D /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		FBB491DF2D6F0106009B2CA9 /* YouTubeiOSPlayerHelper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FBB491DE2D6F0106009B2CA9 /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */;
+			productName = YouTubeiOSPlayerHelper;
 		};
 /* End XCSwiftPackageProductDependency section */
 

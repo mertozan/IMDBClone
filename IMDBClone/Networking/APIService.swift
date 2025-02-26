@@ -63,12 +63,14 @@ class APIService {
             return
         }
         
-        
+        var request = URLRequest(url: url)
+        request.addValue("application/json", forHTTPHeaderField: "accept")
+        request.addValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
         
         performRequest(url: url) { (result: Result<Movie, Error>) in
             switch result {
             case .success(let movie):
-                print("Movie Details: \(movie)")
+                print("Movie Details - Runtime: \(String(describing: movie.runtime))")
                 completion(.success(movie))
             case .failure(let error):
                 print("Error fetching movie details: \(error.localizedDescription)")
@@ -76,8 +78,6 @@ class APIService {
             }
         }
     }
-    
-    
     
     /// Belirli bir film için önerilen filmleri getirir
     func fetchRecommendedMovies(for movieID: Int, completion: @escaping (Result<[Movie], Error>) -> Void) {
@@ -117,7 +117,18 @@ class APIService {
         }
     }
     
-    
+    func fetchMovieTrailer(for movieID: Int, completion: @escaping (Result<VideoResponse, Error>) -> Void) {
+        let urlString = "\(baseURL)/movie/\(movieID)/videos?api_key=\(apiKey)&language=en-US"
+        
+        guard let url = URL(string: urlString) else {
+            completion(.failure(NSError(domain: "Invalid URL", code: -1, userInfo: nil)))
+            return
+        }
+        
+        performRequest(url: url) { (result: Result<VideoResponse, Error>) in
+            completion(result)
+        }
+    }
     
     /// Genel bir API isteği gerçekleştiren yardımcı fonksiyon
     private func performRequest<T: Decodable>(url: URL, completion: @escaping (Result<T, Error>) -> Void) {
@@ -128,14 +139,8 @@ class APIService {
                 return
             }
             
-            
-            
             if let httpResponse = response as? HTTPURLResponse {
                 print("HTTP Response Code: \(httpResponse.statusCode)")
-                if httpResponse.statusCode != 200 {
-                    completion(.failure(NSError(domain: "HTTP Error", code: httpResponse.statusCode, userInfo: nil)))
-                    return
-                }
             }
             
             guard let data = data else {
@@ -144,18 +149,30 @@ class APIService {
                 return
             }
             
+            // API yanıtını kontrol edelim
             if let jsonString = String(data: data, encoding: .utf8) {
-                print("API Response JSON: \(jsonString)")
+                print("API Response: \(jsonString)")
             }
             
             do {
                 let decodedResponse = try JSONDecoder().decode(T.self, from: data)
                 completion(.success(decodedResponse))
             } catch {
-                print("JSON Decode Error: \(error.localizedDescription)")
+                print("Decode error: \(error)")
                 completion(.failure(error))
             }
         }
         task.resume()
     }
+}
+
+struct VideoResponse: Codable {
+    let results: [Video]
+}
+
+struct Video: Codable {
+    let key: String
+    let site: String
+    let type: String
+    let name: String
 }
