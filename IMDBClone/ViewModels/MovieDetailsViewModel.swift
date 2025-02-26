@@ -8,7 +8,7 @@
 import Foundation
 
 class MovieDetailViewModel {
-    private let movie: Movie
+    private var movie: Movie
     var recommendations: [Movie] = [] // Önerilen filmler
     
     // Önerileri dışarıdan eklemek için bir yöntem
@@ -34,6 +34,20 @@ class MovieDetailViewModel {
         }
     }
     
+    func fetchMovieDetails(completion: @escaping () -> Void) {
+        APIService.shared.fetchMovieDetails(for: movie.id) { [weak self] result in
+            switch result {
+            case .success(let movieDetails):
+                self?.movie.runtime = movieDetails.runtime
+                completion()
+            case .failure(let error):
+                print("Error fetching movie details: \(error.localizedDescription)")
+                completion()
+            }
+        }
+    }
+    
+    
     // View'da gösterilecek veriler
     var title: String {
         return movie.title
@@ -44,11 +58,18 @@ class MovieDetailViewModel {
     }
     
     var releaseDate: String {
-        return movie.releaseDate
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd" // API'den gelen tarih formatı
+        guard let date = dateFormatter.date(from: movie.releaseDate) else {
+            return movie.releaseDate // Eğer tarih formatı uymazsa orjinal değeri döner
+        }
+        
+        dateFormatter.dateFormat = "yyyy" // Yıl formatına dönüştürür
+        return dateFormatter.string(from: date)
     }
     
     var rating: String {
-        return "\(movie.voteAverage)"
+        return String (format: "%.1f", movie.voteAverage)
     }
     
     var genres: String {
@@ -62,4 +83,12 @@ class MovieDetailViewModel {
         }
         return nil // Poster yoksa nil döner
     }
+    
+    var formattedDuration: String {
+        guard let runtime = movie.runtime else { return "N/A" }
+        let hours = runtime / 60
+        let minutes = runtime % 60
+        return "\(hours)h \(minutes)m"
+    }
+    
 }

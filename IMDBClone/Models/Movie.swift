@@ -15,6 +15,7 @@ struct Movie : Codable {
     let releaseDate: String // Filmin çıkış tarihi
     let voteAverage: Double // Filmin puanı
     let genreIDs: [Int]
+    var runtime: Int?
     
     // API'den gelen JSON anahtarları farklı olabilir, bu yüzden "CodingKeys" kullanıyoruz.
     enum CodingKeys: String, CodingKey {
@@ -25,6 +26,7 @@ struct Movie : Codable {
         case releaseDate = "release_date"   // JSON'da 'release_date' ismi kullanılıyor
         case voteAverage = "vote_average" // JSON'da 'vote_average' ismi kullanılıyor.
         case genreIDs = "genre_ids"
+        case runtime = "runtime"
     }
     
 }

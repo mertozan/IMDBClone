@@ -53,6 +53,7 @@ class MovieDetailsViewController: UIViewController {
         releaseDateLabel.text = viewModel.releaseDate
         genresLabel.text = viewModel.genres
         overviewLabel.text = viewModel.overview
+        durationLabel.text = viewModel.formattedDuration
         
         if let url = viewModel.posterURL {
             posterImageView.kf.setImage(with: url)
@@ -100,11 +101,6 @@ class MovieDetailsViewController: UIViewController {
     }
     
 }
-
-
-
-
-
 
 // CollectionView Layout ve Boyutlandırma
 extension MovieDetailsViewController: UICollectionViewDelegateFlowLayout {

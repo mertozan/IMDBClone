@@ -54,6 +54,31 @@ class APIService {
         }
     }
     
+    func fetchMovieDetails(for movieID: Int, completion: @escaping (Result<Movie, Error>) -> Void) {
+        let urlString = "\(baseURL)/movie/\(movieID)?api_key=\(apiKey)&language=en-US"
+        
+        guard let url = URL(string: urlString) else {
+            print("Invalid URL")
+            completion(.failure(NSError(domain: "Invalid URL", code: -1, userInfo: nil)))
+            return
+        }
+        
+        
+        
+        performRequest(url: url) { (result: Result<Movie, Error>) in
+            switch result {
+            case .success(let movie):
+                print("Movie Details: \(movie)")
+                completion(.success(movie))
+            case .failure(let error):
+                print("Error fetching movie details: \(error.localizedDescription)")
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    
+    
     /// Belirli bir film için önerilen filmleri getirir
     func fetchRecommendedMovies(for movieID: Int, completion: @escaping (Result<[Movie], Error>) -> Void) {
         let urlString = "\(baseURL)/movie/\(movieID)/recommendations?api_key=\(apiKey)&language=en-US&page=1"
@@ -94,16 +119,27 @@ class APIService {
     
     
     
-    
     /// Genel bir API isteği gerçekleştiren yardımcı fonksiyon
     private func performRequest<T: Decodable>(url: URL, completion: @escaping (Result<T, Error>) -> Void) {
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             if let error = error {
+                print("Error: \(error.localizedDescription)")
                 completion(.failure(error))
                 return
             }
             
+            
+            
+            if let httpResponse = response as? HTTPURLResponse {
+                print("HTTP Response Code: \(httpResponse.statusCode)")
+                if httpResponse.statusCode != 200 {
+                    completion(.failure(NSError(domain: "HTTP Error", code: httpResponse.statusCode, userInfo: nil)))
+                    return
+                }
+            }
+            
             guard let data = data else {
+                print("No data received")
                 completion(.failure(NSError(domain: "No data received", code: -1, userInfo: nil)))
                 return
             }
