@@ -19,7 +19,13 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        
+        setupSearchBar()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Search bar'ı aktif hale getir ve klavyeyi aç
+        searchBar.becomeFirstResponder()
     }
     
     private func setupUI() {
@@ -31,6 +37,11 @@ class SearchViewController: UIViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "SearchCell")
     }
     
+    private func setupSearchBar() {
+        searchBar.placeholder = "Search movies, TV shows, actors..."
+        // Search bar'ın görünümünü özelleştir
+        searchBar.searchBarStyle = .minimal
+    }
 }
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {

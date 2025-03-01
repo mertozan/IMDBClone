@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TVShowCell" id="gTV-IL-0wX" customClass="TVShowCollectionViewCell" customModule="IMDBClone" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="140" height="210"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="140" height="210"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Yh4-RU-auy">
+                        <rect key="frame" x="0.0" y="0.0" width="140" height="160"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="160" id="8dp-pa-LPu"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B3j-Ro-Ehl">
+                        <rect key="frame" x="8" y="168" width="140" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="9On-Ex-dbr"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Yh4-RU-auy" secondAttribute="trailing" id="H0r-JG-Qau"/>
+                <constraint firstItem="B3j-Ro-Ehl" firstAttribute="trailing" secondItem="Yh4-RU-auy" secondAttribute="trailing" constant="8" id="NqL-rM-GZl"/>
+                <constraint firstAttribute="top" secondItem="Yh4-RU-auy" secondAttribute="top" id="R1l-nl-1tg"/>
+                <constraint firstItem="Yh4-RU-auy" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="oll-yt-W3q"/>
+                <constraint firstItem="B3j-Ro-Ehl" firstAttribute="top" secondItem="Yh4-RU-auy" secondAttribute="bottom" constant="8" id="s8Z-an-SgU"/>
+                <constraint firstItem="B3j-Ro-Ehl" firstAttribute="leading" secondItem="Yh4-RU-auy" secondAttribute="leading" constant="8" id="xP8-aY-tPi"/>
+            </constraints>
+            <connections>
+                <outlet property="posterImageView" destination="Yh4-RU-auy" id="zy8-v8-M7T"/>
+                <outlet property="titleLabel" destination="B3j-Ro-Ehl" id="Qw6-kE-mcd"/>
+            </connections>
+            <point key="canvasLocation" x="32" y="-11"/>
+        </collectionViewCell>
+    </objects>
+</document>

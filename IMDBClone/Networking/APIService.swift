@@ -164,6 +164,64 @@ class APIService {
         }
         task.resume()
     }
+    
+    // Popüler dizileri getir
+    func fetchPopularTVShows(completion: @escaping (Result<[TVShow], Error>) -> Void) {
+        let urlString = "\(baseURL)/tv/popular?api_key=\(apiKey)&language=en-US&page=1"
+        
+        guard let url = URL(string: urlString) else {
+            completion(.failure(NSError(domain: "Invalid URL", code: -1, userInfo: nil)))
+            return
+        }
+        
+        performRequest(url: url) { (result: Result<TVShowResponse, Error>) in
+            switch result {
+            case .success(let response):
+                completion(.success(response.results))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    // Popüler oyuncuları getir
+    func fetchPopularActors(completion: @escaping (Result<[Actor], Error>) -> Void) {
+        let urlString = "\(baseURL)/person/popular?api_key=\(apiKey)&language=en-US&page=1"
+        
+        guard let url = URL(string: urlString) else {
+            completion(.failure(NSError(domain: "Invalid URL", code: -1, userInfo: nil)))
+            return
+        }
+        
+        performRequest(url: url) { (result: Result<ActorResponse, Error>) in
+            switch result {
+            case .success(let response):
+                completion(.success(response.results))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    // Film veya dizi oyuncu kadrosunu getir
+    func fetchCast(for id: Int, isMovie: Bool, completion: @escaping (Result<[Cast], Error>) -> Void) {
+        let mediaType = isMovie ? "movie" : "tv"
+        let urlString = "\(baseURL)/\(mediaType)/\(id)/credits?api_key=\(apiKey)&language=en-US"
+        
+        guard let url = URL(string: urlString) else {
+            completion(.failure(NSError(domain: "Invalid URL", code: -1, userInfo: nil)))
+            return
+        }
+        
+        performRequest(url: url) { (result: Result<CastResponse, Error>) in
+            switch result {
+            case .success(let response):
+                completion(.success(response.cast))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
 }
 
 struct VideoResponse: Codable {

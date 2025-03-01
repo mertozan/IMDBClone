@@ -26,16 +26,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // ViewController'ları oluştur ve Tab Bar'a ekle
         let moviesVC = UINavigationController(rootViewController: UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieListViewController"))
-        moviesVC.tabBarItem = UITabBarItem(title: "Movies", image: UIImage(systemName: "film"), tag: 0)
+        moviesVC.tabBarItem = UITabBarItem(title: "Movies", image: UIImage(systemName: "film"), tag: 1)
         
         let searchVC = UINavigationController(rootViewController: SearchViewController())
-        searchVC.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), tag: 1)
+        searchVC.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), tag: 2)
         
-        let profileVC = UINavigationController(rootViewController: ProfileViewController())
-        profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person"), tag: 2)
+        let homeVC = UINavigationController(rootViewController: HomeViewController())
+        homeVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 0)
         
         // Tab Bar Controller'a ViewController'ları ekle
-        tabBarController.viewControllers = [moviesVC, searchVC, profileVC]
+        tabBarController.viewControllers = [moviesVC, searchVC, homeVC]
         
         // Window'u ayarla ve Tab Bar Controller'ı göster
         window = UIWindow(windowScene: windowScene)
