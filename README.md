@@ -2,6 +2,7 @@
 
 ## 📱 Project Overview
 This iOS application is a clone of IMDB, built using Swift and UIKit. It provides users with a modern interface to browse movies, TV shows, and actors while implementing TMDB (The Movie Database) API for real-time data.
+![Movies](https://hizliresim.com/nxx196o)
 
 ## 🌟 Key Features
 * Browse popular movies, TV shows, and actors
