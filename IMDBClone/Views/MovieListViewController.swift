@@ -17,6 +17,7 @@ class MovieListViewController: UIViewController {
         setupTableView()
         setupBindings()
         viewModel.fetchMovies()
+        title = "Movies"
 
     }
     
