@@ -24,6 +24,7 @@ class HomeViewController: UIViewController {
         setupCollectionViews()
         title = "Home"
         
+        
         // Verileri yükle
         viewModel.fetchAllData { [weak self] in
             self?.reloadCollectionViews()

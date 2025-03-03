@@ -6,6 +6,7 @@
 	objectVersion = 77;
 	objects = {
 
+<<<<<<< HEAD
 /* Begin PBXBuildFile section */
 		FB08927B2D0507E6007CC8C6 /* UIView+Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB08927A2D0507E6007CC8C6 /* UIView+Styling.swift */; };
 		FB08927D2D0508D1007CC8C6 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB08927C2D0508D1007CC8C6 /* ThemeManager.swift */; };
@@ -110,15 +111,43 @@
 		FBC4B9382D03766700036B94 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
 		FBC4B93A2D03826800036B94 /* MovieDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewModel.swift; sourceTree = "<group>"; };
 		FBC4B9422D038F4000036B94 /* RecommendationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationCollectionViewCell.swift; sourceTree = "<group>"; };
+=======
+/* Begin PBXFileReference section */
+		FB34286E2CFE512E00A75173 /* IMDBClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IMDBClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
+>>>>>>> main
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		FB3428832CFE512F00A75173 /* Exceptions for "IMDBClone" folder in "IMDBClone" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = FB34286D2CFE512E00A75173 /* IMDBClone */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		FB3428702CFE512E00A75173 /* IMDBClone */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				FB3428832CFE512F00A75173 /* Exceptions for "IMDBClone" folder in "IMDBClone" target */,
+			);
+			path = IMDBClone;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		FB34286B2CFE512E00A75173 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+<<<<<<< HEAD
 				FB53EEC12D0325E4008FEA0D /* Kingfisher in Frameworks */,
 				FBB491E02D6F0106009B2CA9 /* YouTubeiOSPlayerHelper in Frameworks */,
+=======
+>>>>>>> main
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,7 +157,7 @@
 		FB3428652CFE512E00A75173 = {
 			isa = PBXGroup;
 			children = (
-				FB3428932CFE570400A75173 /* IMDBClone */,
+				FB3428702CFE512E00A75173 /* IMDBClone */,
 				FB34286F2CFE512E00A75173 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -141,6 +170,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+<<<<<<< HEAD
 		FB3428932CFE570400A75173 /* IMDBClone */ = {
 			isa = PBXGroup;
 			children = (
@@ -253,6 +283,8 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+=======
+>>>>>>> main
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -268,10 +300,16 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				FB3428702CFE512E00A75173 /* IMDBClone */,
+			);
 			name = IMDBClone;
 			packageProductDependencies = (
+<<<<<<< HEAD
 				FB53EEC02D0325E4008FEA0D /* Kingfisher */,
 				FBB491DF2D6F0106009B2CA9 /* YouTubeiOSPlayerHelper */,
+=======
+>>>>>>> main
 			);
 			productName = IMDBClone;
 			productReference = FB34286E2CFE512E00A75173 /* IMDBClone.app */;
@@ -301,10 +339,13 @@
 			);
 			mainGroup = FB3428652CFE512E00A75173;
 			minimizedProjectReferenceProxies = 1;
+<<<<<<< HEAD
 			packageReferences = (
 				FB53EEBF2D0325E4008FEA0D /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				FBB491DE2D6F0106009B2CA9 /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */,
 			);
+=======
+>>>>>>> main
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FB34286F2CFE512E00A75173 /* Products */;
 			projectDirPath = "";
@@ -320,6 +361,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+<<<<<<< HEAD
 				FB6D6E612D73015F00448E1F /* MovieCollectionViewCell.xib in Resources */,
 				FB112DBC2D05A65A003A0F8F /* CustomListTableViewCell.xib in Resources */,
 				FB3428952CFE570400A75173 /* Assets.xcassets in Resources */,
@@ -333,6 +375,8 @@
 				FB6D6E552D73009900448E1F /* HomeViewController.xib in Resources */,
 				FB6D6E692D73017A00448E1F /* ActorCollectionViewCell.xib in Resources */,
 				FB6D6E652D73017100448E1F /* TVShowCollectionViewCell.xib in Resources */,
+=======
+>>>>>>> main
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,6 +387,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+<<<<<<< HEAD
 				FBC4B93B2D03827000036B94 /* MovieDetailsViewModel.swift in Sources */,
 				FB3428AA2CFE5BBE00A75173 /* MovieResponse.swift in Sources */,
 				FB6D6E5C2D7300C000448E1F /* ActorDetailsViewController.swift in Sources */,
@@ -378,29 +423,12 @@
 				FB3428A62CFE58ED00A75173 /* Movie.swift in Sources */,
 				FB112DC32D05B3B1003A0F8F /* User.swift in Sources */,
 				FB6D6E712D7301CD00448E1F /* Actor.swift in Sources */,
+=======
+>>>>>>> main
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		FB34288E2CFE570400A75173 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FB34288D2CFE570400A75173 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		FB3428902CFE570400A75173 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FB34288F2CFE570400A75173 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		FB3428852CFE512F00A75173 /* Debug */ = {
@@ -600,6 +628,7 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+<<<<<<< HEAD
 
 /* Begin XCRemoteSwiftPackageReference section */
 		FB53EEBF2D0325E4008FEA0D /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
@@ -645,6 +674,8 @@
 			versionGroupType = wrapper.xcdatamodel;
 		};
 /* End XCVersionGroup section */
+=======
+>>>>>>> main
 	};
 	rootObject = FB3428662CFE512E00A75173 /* Project object */;
 }

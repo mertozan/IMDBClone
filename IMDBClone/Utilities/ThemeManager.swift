@@ -26,8 +26,9 @@ struct ThemeManager {
         UITabBar.appearance().backgroundColor = UIColor(hex: "#3c3f3c")
         
         // UITableView Arka Planı
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.red]
         
-        UITableViewCell.appearance().backgroundColor = UIColor(hex: "#F5F5F5").withAlphaComponent(1.0)
+        UITableViewCell.appearance().backgroundColor = .white
         // UICollectionView Arka Planı
         //UICollectionView.appearance().backgroundColor = UIColor(hex: "#1C1C1E")
     }
